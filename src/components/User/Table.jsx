@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import TableBody from "./TableBody";
+import TableBody from "components/User/TableBody";
 import { Error, Spinner } from "components/Utils";
 
 export const UserContext = createContext();
