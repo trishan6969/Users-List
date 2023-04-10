@@ -1,4 +1,4 @@
-import Error from "./Error";
-import Spinner from "./Spinner";
+import Error from "components/Utils/Error";
+import Spinner from "components/Utils/Spinner";
 
 export { Error, Spinner };
