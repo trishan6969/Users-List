@@ -10,7 +10,7 @@ const Table = () => {
 	const [ userData, setUserData ] = useState(null);
 	const [ loading, setLoading ] = useState(false);
 	const [ error, setError ] = useState(false);
-	const API_URL = "https://randomuser.me/api/?results=10&gender=female";
+	const API_URL = import.meta.env.VITE_API_URL;
 
 	useEffect(()=>{
 		getUserData();
