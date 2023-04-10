@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import TableBody from "./TableBody";
 import { Error, Spinner } from "components/Utils";
+
+export const UserContext = createContext();
 
 const Table = () => {
 	const [ userData, setUserData ] = useState(null);
@@ -65,7 +67,9 @@ const Table = () => {
 
 				<tbody>
 					{userData.map((data)=>(
-						<TableBody data={data} key={data.login.uuid}/>
+						<UserContext.Provider value={data} key={data.login.uuid}>
+							<TableBody/>
+						</UserContext.Provider>
 					))}
 				</tbody>
 			</table>

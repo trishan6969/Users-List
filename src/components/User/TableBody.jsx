@@ -1,7 +1,9 @@
+import { useContext } from "react";
+import { UserContext } from "./Table";
 import PropTypes from "prop-types";
 
-const TableBody = (props) => {
-	const { data } = props;
+const TableBody = () => {
+	const data = useContext(UserContext);
 	const { name, location, email, login, picture, phone } = data;
 
 	return (
