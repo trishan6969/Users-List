@@ -1,7 +1,9 @@
+import spinner from "src/assets/spinner.gif";
+
 const Spinner = () => {
 	return (
 		<img
-			src="/src/assets/spinner.gif"
+			src={spinner}
 			alt="Loading..."
 			className="w-24 mt-40"
 		/>
