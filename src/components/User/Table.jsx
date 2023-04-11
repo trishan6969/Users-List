@@ -1,8 +1,6 @@
 import { useEffect, useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import UserContext from "contexts/UserContext";
-import TableBody from "components/User/TableBody";
+import { TableBody, TableHead, Options } from "components/User";
 import { Error, Spinner } from "components/Common";
 
 const Table = () => {
@@ -23,46 +21,41 @@ const Table = () => {
 				onClick={actions.getData}
 			>
 				Refresh
-				<FontAwesomeIcon className="ml-3" icon={faArrowsRotate} />
+				<i className="ml-3 fa-solid fa-arrows-rotate"></i>
 			</button>
 
-			<table className="table-auto my-8 mx-2 w-9/12 font-primary">
-				<thead>
-					<tr className="bg-secondary text-black">
-						<th className="table-heading">Picture</th>
-						<th className="table-heading">Name</th>
-						<th className="table-heading">Email</th>
-						<th className="table-heading">Username</th>
-						<th className="table-heading">Password</th>
-						<th className="table-heading">Phone</th>
-						<th className="table-heading">Location</th>
-					</tr>
-				</thead>
+			<div className="flex flex-col items-center justify-center w-9/12 mt-6 user-table h-fit">
+				<Options/>
 
-				<tbody>
-					{states.loading &&
+				<table className="w-full mx-2 my-4 table-auto font-primary">
+					<TableHead/>
+
+					<tbody>
+						{states.loading &&
 					<tr>
-						<td colSpan="7" align="center">
+						<td colSpan="100%" align="center">
 							 <Spinner />
 						</td>
 					</tr>
-					}
+						}
 
-					{states.error &&
+						{states.error &&
 					<tr>
-						<td colSpan="7" align="center">
+						<td colSpan="100%" align="center">
 							 <Error />
 						</td>
 					</tr>
-					}
+						}
 
-					{states.userData &&
+						{states.userData &&
 						states.userData.map((data) => (
 							<TableBody data={data} key={data.login.uuid} />
 						))
-					}
-				</tbody>
-			</table>
+						}
+					</tbody>
+				</table>
+			</div>
+
 		</div>
 	);
 };
