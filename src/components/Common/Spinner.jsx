@@ -5,7 +5,7 @@ const Spinner = () => {
 		<img
 			src={spinner}
 			alt="Loading..."
-			className="w-24 mt-40"
+			className="w-24 mt-48"
 		/>
 	);
 };
