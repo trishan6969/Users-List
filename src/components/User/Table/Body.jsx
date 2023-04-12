@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
-const TableBody = ({ data }) => {
+const Body = ({ data }) => {
 	const { name, location, email, login, picture, phone } = data;
 
 	return (
 		<tr className="text-center odd:bg-tertiary even:bg-quaternary">
 			<td className="user-data">
 				<img
-					className="w-12 h-12 rounded-full objectect-cover m-auto"
+					className="w-12 h-12 m-auto rounded-full objectect-cover"
 					src={picture.thumbnail}
 					alt={`${name.first} ${name.last}`}
 				/>
@@ -32,7 +32,7 @@ const TableBody = ({ data }) => {
 	);
 };
 
-TableBody.propTypes = {
+Body.propTypes = {
 	data: PropTypes.object,
 	name: PropTypes.object,
 	location: PropTypes.object,
@@ -42,4 +42,4 @@ TableBody.propTypes = {
 	phone: PropTypes.string,
 };
 
-export default TableBody;
+export default Body;

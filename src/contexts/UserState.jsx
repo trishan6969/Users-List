@@ -2,14 +2,22 @@ import { useState } from "react";
 import UserContext from "contexts/UserContext";
 import PropTypes from "prop-types";
 
+const NUMBERS ={
+	zero: 0,
+	one: 1
+};
+
 const UserState = ({ children }) => {
+	const [ rawData, setRawData ] = useState([]);
 	const [ userData, setUserData ] = useState([]);
 	const [ loading, setLoading ] = useState(false);
 	const [ error, setError ] = useState(false);
+	const [ searchError, setSearchError ] = useState(false);
 
 	const API_URL = import.meta.env.VITE_API_URL;
 
 	const getData = async () =>{
+		setSearchError(false);
 		setError(false);
 		setLoading(true);
 		setUserData(null);
@@ -18,6 +26,7 @@ const UserState = ({ children }) => {
 			const response = await fetch(API_URL);
 			const result = await response.json();
 			const { results } = result;
+			setRawData(results);
 			setUserData(results);
 			return results;
 		}
@@ -30,14 +39,29 @@ const UserState = ({ children }) => {
 		}
 	};
 
+	const searchUser = (inputValue) => {
+		setSearchError(false);
+		const filterUser = rawData.filter((user)=>{
+			const { name } = user;
+			return name.first.toLowerCase().startsWith(inputValue);
+		});
+		setUserData(filterUser);
+
+		if(filterUser.length === NUMBERS.zero){
+			setSearchError(true);
+		}
+	};
+
 	const states = {
 		userData,
 		loading,
-		error
+		error,
+		searchError
 	};
 
 	const actions = {
-		getData
+		getData,
+		searchUser
 	};
 
 	return (
