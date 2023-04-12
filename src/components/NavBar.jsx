@@ -1,7 +1,7 @@
 const NavBar = () => {
 	return (
-		<nav className="p-5 bg-primary text-white ">
-			<h1 className="nav--heading text-xl font-primary font-bold text-center">Users List</h1>
+		<nav className="p-5 text-white bg-primary ">
+			<h1 className="text-xl font-bold text-center nav--heading font-primary">Users List</h1>
 		</nav>
 	);
 };
