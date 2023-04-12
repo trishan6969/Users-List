@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import UserContext from "contexts/UserContext";
 import { Body, Head } from "components/User/Table";
-import { Options } from "components/User";
+import Options from "components/User/Options";
 import { Error, Spinner } from "components/Common";
 
 const Table = () => {
@@ -15,11 +15,11 @@ const Table = () => {
 	return (
 		<div className="flex flex-col items-center justify-center mt-10">
 			<button
-				id="user-action-refresh"
 				type="button"
-				disabled={states.loading}
+				id="user-action-refresh"
 				className="bg-primary text-white py-3 font-primary rounded-md px-6 font-bold hover:bg-[#da5b7f]"
 				onClick={actions.getData}
+				disabled={states.loading}
 			>
 				Refresh
 				<i className="ml-3 fa-solid fa-arrows-rotate"></i>
