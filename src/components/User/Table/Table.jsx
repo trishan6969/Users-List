@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import UserContext from "contexts/UserContext";
-import { TableBody, TableHead, Options } from "components/User";
+import { Body, Head } from "components/User/Table";
+import { Options } from "components/User";
 import { Error, Spinner } from "components/Common";
 
 const Table = () => {
@@ -28,7 +29,7 @@ const Table = () => {
 				<Options/>
 
 				<table className="w-full mx-2 my-4 table-auto font-primary">
-					<TableHead/>
+					<Head/>
 
 					<tbody>
 						{states.loading &&
@@ -42,16 +43,25 @@ const Table = () => {
 						{states.error &&
 					<tr>
 						<td colSpan="100%" align="center">
-							 <Error />
+							 <Error message = "Sorry, we could not load the page you requested. Please try again later"/>
+						</td>
+					</tr>
+						}
+
+						{states.searchError &&
+					<tr>
+						<td colSpan="100%" align="center">
+							 <Error message = "Sorry, no user found with such name. Try again with different name" />
 						</td>
 					</tr>
 						}
 
 						{states.userData &&
 						states.userData.map((data) => (
-							<TableBody data={data} key={data.login.uuid} />
+							<Body data={data} key={data.login.uuid} />
 						))
 						}
+
 					</tbody>
 				</table>
 			</div>
