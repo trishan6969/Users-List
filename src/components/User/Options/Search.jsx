@@ -9,10 +9,12 @@ const Search = () => {
 	const clearInput = useCallback(() =>{
 		searchBar.current.value = "";
 		actions.searchUser(searchBar.current.value);
+		return searchBar.current.value;
 	});
 
 	const handleSearch = useCallback(()=> {
 		actions.searchUser(searchBar.current.value.toLowerCase());
+		return searchBar.current.value.toLowerCase();
 	});
 
 	return (

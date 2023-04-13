@@ -8,6 +8,7 @@ const Sort = () => {
 
 	const handleSort = ()=>{
 		actions.sortUser(sortOption.current.value);
+		return sortOption.current.value;
 	};
 
 	return (

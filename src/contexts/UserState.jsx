@@ -50,11 +50,11 @@ const UserState = ({ children }) => {
 			const { name } = user;
 			return name.first.toLowerCase().startsWith(inputValue);
 		});
-		setUserData(filterUser);
-
 		if (filterUser.length === NUMBERS.zero) {
 			setSearchError(true);
 		}
+		setUserData(filterUser);
+		return filterUser;
 	};
 
 	const sortUser = (format) => {
@@ -64,15 +64,18 @@ const UserState = ({ children }) => {
 				return a.name.first.localeCompare(b.name.first);
 			});
 			setUserData(ascData);
+			return ascData;
 		}
 		else if(format === SORT_FORMAT.desc) {
 			const descData = sortedData.sort((a, b) => {
 				return b.name.first.localeCompare(a.name.first);
 			});
 			setUserData(descData);
+			return descData;
 		}
 		else{
 			setUserData(rawData);
+			return rawData;
 		}
 	};
 
