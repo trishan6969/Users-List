@@ -1,20 +1,19 @@
-import { useCallback, useRef, useContext } from "react";
-import UserContext from "contexts/UserContext";
+import { useCallback, useContext } from "react";
+import { UserContext } from "contexts/User";
 
 const Search = () => {
 	const context = useContext(UserContext);
-	const { actions } = context;
-	const searchBar = useRef();
+	const { actions, refs } = context;
 
 	const clearInput = useCallback(() =>{
-		searchBar.current.value = "";
-		actions.searchUser(searchBar.current.value);
-		return searchBar.current.value;
+		refs.searchBar.current.value = "";
+		actions.searchUser(refs.searchBar.current.value);
+		return refs.searchBar.current.value;
 	});
 
 	const handleSearch = useCallback(()=> {
-		actions.searchUser(searchBar.current.value.toLowerCase());
-		return searchBar.current.value.toLowerCase();
+		actions.searchUser(refs.searchBar.current.value.toLowerCase());
+		return refs.searchBar.current.value.toLowerCase();
 	});
 
 	return (
@@ -24,9 +23,8 @@ const Search = () => {
 			</svg>
 
 			<input
-				type="search"
-				ref={searchBar}
-				id="user-action-search"
+				type="text"
+				ref={refs.searchBar}
 				className="p-2 border border-gray-100 rounded-sm shadow-md px-14 font-primary bg-tertiary w-80 focus:outline-none focus:ring-primary focus:ring-2"
 				placeholder="Search User by Name"
 				onChange={handleSearch}

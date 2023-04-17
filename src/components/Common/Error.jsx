@@ -1,12 +1,9 @@
 import PropTypes from "prop-types";
 
-const Error = ({ message }) => {
-	return (
-		<p className="text-lg font-bold text-red-500 error font-primary mt-52">
-			{message}
-		</p>
-	);
-};
+const Error = ({ message }) =>
+	<p className="text-lg font-bold text-red-500 error font-primary mt-52">
+		{message}
+	</p>;
 
 Error.propTypes = {
 	message: PropTypes.string

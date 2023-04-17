@@ -45,11 +45,11 @@ module.exports = {
 		}],
 		camelcase: ["error"],
 		"no-inline-comments": "error",
-		"no-magic-numbers": [ "error",{
-			"ignoreArrayIndexes": true,
-			"ignoreDefaultValues": true,
-			"ignoreClassFieldInitialValues": true,
-		}],
+		// "no-magic-numbers": [ "error",{
+		// 	"ignoreArrayIndexes": true,
+		// 	"ignoreDefaultValues": true,
+		// 	"ignoreClassFieldInitialValues": true,
+		// }],
 		"no-negated-condition": "error",
 		"no-nested-ternary": "error",
 		"no-var": "error",

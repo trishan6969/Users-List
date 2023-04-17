@@ -1,14 +1,13 @@
-import { useContext, useRef } from "react";
-import UserContext from "contexts/UserContext";
+import { useContext } from "react";
+import { UserContext } from "contexts/User";
 
 const Sort = () => {
 	const context = useContext(UserContext);
-	const { actions } = context;
-	const sortOption = useRef();
+	const { actions, refs } = context;
 
 	const handleSort = ()=>{
-		actions.sortUser(sortOption.current.value);
-		return sortOption.current.value;
+		actions.sortUser(refs.sortOption.current.value);
+		return refs.sortOption.current.value;
 	};
 
 	return (
@@ -16,7 +15,7 @@ const Sort = () => {
 			<p className="font-bold">Sort By:</p>
 
 			<select
-				ref={sortOption}
+				ref={refs.sortOption}
 				className="p-3 pl-4 pr-20 shadow-md appearance-none cursor-pointer font-primary bg-tertiary hover:bg-quaternary"
 				name="SortBy"
 				id="user-action-sort"

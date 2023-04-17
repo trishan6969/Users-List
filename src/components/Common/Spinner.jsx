@@ -1,13 +1,10 @@
 import spinner from "src/assets/spinner.gif";
 
-const Spinner = () => {
-	return (
-		<img
-			src={spinner}
-			alt="Loading..."
-			className="w-24 mt-48"
-		/>
-	);
-};
+const Spinner = () =>
+	<img
+		src={spinner}
+		alt="Loading..."
+		className="w-24 mt-48"
+	/>;
 
 export default Spinner;

@@ -1,30 +1,28 @@
-import { useState } from "react";
-import UserContext from "contexts/UserContext";
+import { useState, useRef } from "react";
+import Context from "contexts/User/Context";
 import PropTypes from "prop-types";
-
-const NUMBERS = {
-	zero: 0,
-	one: 1
-};
 
 const SORT_FORMAT = {
 	asc: "ascending",
 	desc: "descending"
 };
 
-const UserState = ({ children }) => {
+const API_URL = import.meta.env.VITE_API_URL;
+
+const Provider = ({ children }) => {
 	const [ rawData, setRawData ] = useState([]);
 	const [ userData, setUserData ] = useState([]);
-	const [ loading, setLoading ] = useState(false);
-	const [ error, setError ] = useState(false);
-	const [ searchError, setSearchError ] = useState(false);
+	const [ isLoading, setIsLoading ] = useState(false);
+	const [ hasError, setHasError ] = useState(false);
+	const [ hasSearchError, setHasSearchError ] = useState(false);
 
-	const API_URL = import.meta.env.VITE_API_URL;
+	const searchBar = useRef();
+	const sortOption = useRef();
 
 	const getData = async () => {
-		setSearchError(false);
-		setError(false);
-		setLoading(true);
+		setHasSearchError(false);
+		setHasError(false);
+		setIsLoading(true);
 		setUserData(null);
 
 		try {
@@ -35,23 +33,23 @@ const UserState = ({ children }) => {
 			setUserData(results);
 			return results;
 		}
-		catch (error) {
-			setError(true);
-			return error.name;
+		catch (hasError) {
+			setHasError(true);
+			return hasError.name;
 		}
 		finally {
-			setLoading(false);
+			setIsLoading(false);
 		}
 	};
 
 	const searchUser = (inputValue) => {
-		setSearchError(false);
+		setHasSearchError(false);
 		const filterUser = rawData.filter((user) => {
 			const { name } = user;
 			return name.first.toLowerCase().startsWith(inputValue);
 		});
-		if (filterUser.length === NUMBERS.zero) {
-			setSearchError(true);
+		if (filterUser.length === 0) {
+			setHasSearchError(true);
 		}
 		setUserData(filterUser);
 		return filterUser;
@@ -81,9 +79,14 @@ const UserState = ({ children }) => {
 
 	const states = {
 		userData,
-		loading,
-		error,
-		searchError
+		isLoading,
+		hasError,
+		hasSearchError
+	};
+
+	const refs = {
+		searchBar,
+		sortOption
 	};
 
 	const actions = {
@@ -93,16 +96,16 @@ const UserState = ({ children }) => {
 	};
 
 	return (
-		<UserContext.Provider value={{
-			states, actions
+		<Context.Provider value={{
+			states, actions, refs
 		}}>
 			{children}
-		</UserContext.Provider>
+		</Context.Provider>
 	);
 };
 
-UserState.propTypes = {
-	children: PropTypes.array
+Provider.propTypes = {
+	children: PropTypes.object
 };
 
-export default UserState;
+export default Provider;
