@@ -1,20 +1,20 @@
 import "src/index.css";
 import NavBar from "components/NavBar";
-import Table from "components/User";
-import UserState from "contexts/UserState";
+import UserTable from "components/User";
+import UserProvider from "contexts/User";
 
 const App = () => {
 	return (
 		<div className="App">
-			<UserState>
-				<header>
-					<NavBar/>
-				</header>
+			<header>
+				<NavBar/>
+			</header>
 
+			<UserProvider>
 				<main>
-					<Table/>
+					<UserTable/>
 				</main>
-			</UserState>
+			</UserProvider>
 		</div>
 	);
 };

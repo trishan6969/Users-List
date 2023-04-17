@@ -8,7 +8,8 @@ export default defineConfig({
 		alias: {
 			src: "/src",
 			components: "/src/components",
-			contexts: "/src/contexts"
+			contexts: "components/contexts",
+			hooks: "/src/hooks"
 		},
 	},
 });
